@@ -70,12 +70,13 @@ int main()
     timeAvg = 0;
     timeDev = 0;
     std::cout << "std::sort with inlining\n";
-    for (int i = 0; i < ITERATIONS; ++i)
+    for (int i = 0; i < ITERATIONS + 1; ++i)
     {
-        std::vector<Item1> items1(nums.begin(), nums.end());
+        std::vector<Item1> items(nums.begin(), nums.end());
         start = omp_get_wtime();
-        std::sort(nums.begin(), nums.end());
-        times.push_back(omp_get_wtime() - start);
+        std::sort(items.begin(), items.end());
+        if (i > 0)
+          times.push_back(omp_get_wtime() - start);
     }
     for (unsigned i = 0; i < times.size(); ++i)
         timeAvg += times[i];
@@ -91,12 +92,13 @@ int main()
     timeAvg = 0;
     timeDev = 0;
     std::cout << "std::sort without inlining\n";
-    for (int i = 0; i < ITERATIONS; ++i)
+    for (int i = 0; i < ITERATIONS + 1; ++i)
     {
-        std::vector<Item1> items1(nums.begin(), nums.end());
+        std::vector<Item2> items(nums.begin(), nums.end());
         start = omp_get_wtime();
-        std::sort(nums.begin(), nums.end());
-        times.push_back(omp_get_wtime() - start);
+        std::sort(items.begin(), items.end());
+        if (i > 0)
+          times.push_back(omp_get_wtime() - start);
     }
     for (unsigned i = 0; i < times.size(); ++i)
         timeAvg += times[i];
