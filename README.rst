@@ -19,12 +19,13 @@ declared as virtual.
 The resulting differences in running times on a Xeon X5550 @2.67 Ghz
 machine, compiled with GCC 4.4.5 are as follows.
 
+::
 
     Parameters
         # iterations: 10
         # items     : 100000000
         seed        : 42
-  
+
     Generating input.
         time 0.836878 s
 
